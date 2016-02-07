@@ -1,0 +1,8 @@
+SELECT Sale_goods.id_sal_good, Supp_goods.good_name, Supp_goods.note,;
+  Sale_goods.quantity;
+ FROM  diler!storage RIGHT OUTER JOIN diler!sale_goods;
+    INNER JOIN diler!supp_goods ;
+   ON  Sale_goods.id_sal_good = Supp_goods.id_s_good ;
+   ON  Storage.id_st_good = Sale_goods.id_sal_good;
+ WHERE Sale_goods.id_sal_good <> Storage.id_st_good;
+ INTO CURSOR Cnz

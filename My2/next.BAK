@@ -1,0 +1,22 @@
+FUNCTION NextKey
+Parameters cTableName
+
+nOldArea=SELECT() && Запоминаем рабочую область
+IF !USED("SYS_KEY") && Проверяем, открыта ли таблица
+USE SYS_KEY IN 0
+ENDIF
+
+SELECT SYS_KEY
+LOCATE FOR TableName=cTableName
+IF FOUND()
+IF RLOCK()
+nNextKey = KeyValue + 1 && Определяем новое значение ключа
+REPLACE KeyValue WITH nNextKey
+ENDIF
+SELECT (nOldArea) && Возвращаемся в прежнюю рабочую область
+RETURN nNextKey && Возвращаем новое значение
+ELSE
+=MESSAGEBOX("Новое ключевое значение создать не удалось!")
+SELECT(nOldArea)
+RETURN .f.
+ENDIF

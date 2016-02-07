@@ -1,0 +1,7 @@
+SELECT Supp_order.ids_order, Supp_order.id_cont, Supp_order.ord_date,;
+  Supp_order.summa;
+ FROM diler!supp_order;
+ WHERE Supp_order.pay_mark = .T.;
+   AND Supp_order.supp_mark = .F.;
+ ORDER BY Supp_order.ord_date;
+ INTO CURSOR Snd_ord
